@@ -25,8 +25,6 @@ def convert(input):
                 for key, value in input.items()}
     elif isinstance(input, list):
         return [convert(element) for element in input]
-    elif isinstance(input, str):
-        return input.encode('utf-8')
     else:
         return input
 
@@ -171,7 +169,7 @@ class ChargeOver:
         # debugging purposes.
         self._data = json.loads(content, object_hook=convert)
         # the actual data. Calling method retrieves this.
-        self._response = self._data
+        self._response = self._data['response']
 
     def _submit(self, location, data, obj_id=None):
         # internal method for handling POST and PUT requests (that is,
